@@ -1,4 +1,4 @@
-if !exists('*g:textobj_function_actionscript_select') || exists("g:textobj_function_actionscript_testing")
+if !exists('*g:textobj_function_actionscript_select') || exists("g:textobj_function_testing")
 	let s:function_pattern = '\(public\|private\|protected\).*function'
 	function! g:textobj_function_actionscript_select(object_type)
 		return s:select_{a:object_type}()
@@ -43,7 +43,7 @@ if !exists('*g:textobj_function_actionscript_select') || exists("g:textobj_funct
 		endif
 	endfunction
 
-	function! s:test()
+	function! s:test_actionscript()
 		TAssertOn
 		:e  ~/.vim/bundle/textobj_function/test/as_test.as
 		"test outer function 
@@ -59,8 +59,8 @@ if !exists('*g:textobj_function_actionscript_select') || exists("g:textobj_funct
 		echo "PASS"
 	endfunction
 
-	if (exists("g:textobj_function_actionscript_testing"))
-		call s:test()
+	if (exists("g:textobj_function_testing"))
+		call s:test_actionscript()
 	endif
 endif
 
