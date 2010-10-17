@@ -1,0 +1,84 @@
+#extends base
+#def title: Jobs
+
+#def head_extra()
+	<script type="text/javascript" src="http://${config.ver_domain}/${config.js_dir}/basics.js"></script>
+	<style type="text/css">
+		#slideshow_popup {
+			position: absolute;
+			display: none;
+			height: 280px;
+			width: 380px;
+			margin-left: -250px;
+			padding: 10px;
+			background-color: #fff;
+			border: 1px solid #ccc;
+		}
+	</style>	
+	<script type="text/javascript">
+		var showPopup = function(whichSlideshow) {
+			getObject('slideshow_popup').style.display = 'block';
+			if (whichSlideshow == 1) {
+				getObject('slideshow_container').innerHTML = '<embed src="http://widget-e0.slide.com/widgets/slideticker.swf" type="application/x-shockwave-flash" quality="high" scale="noscale" salign="l" wmode="transparent" flashvars="il=1&channel=2305843009231654112&sk=0&site=widget-e0.slide.com" style="width:380px;height:250px" name="flashticker" align="middle"></embed>';
+			} else {
+				getObject('slideshow_container').innerHTML = '<embed src="http://widget-55.slide.com/widgets/slideticker.swf" type="application/x-shockwave-flash" quality="high" scale="noscale" salign="l" wmode="transparent" flashvars="tt=17&th=0&il=1&channel=8235349&site=widget-55.slide.com" style="width:380px;height:250px" name="flashticker" align="middle"></embed>'; 
+			}
+		}
+
+		var closePopup = function() {
+			getObject('slideshow_popup').style.display = 'none';
+			getObject('slideshow_container').innerHTML = ' '; 
+		}
+	</script>
+#end def
+
+#def main_content
+#from configs.config import config
+#from logic import serdes
+
+$aboutNav()
+
+
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="width:625px;">
+			<h1>Jobs at Slide</h1>
+			<p style="padding-right:35px;">
+				The Slide team is a dedicated, passionate team of athletes, artists and tech pioneers who work hard and play harder. Do you hack Python or Object-oriented JavaScript? Do you get into fistfights with coders who don't implement exactly to spec? Do you want to be a part of the Net's next success story? Then join us! Browse our jobs below... 
+			</p>
+			<iframe style="margin-left:-35px;" width="625" height="1000" scrolling="no" frameborder=0 src="http://www.jobscore.com/jobs/slide/list?iframe=1"></iframe>
+			<p style="margin-top:10px; padding-right:35px;">
+				<strong>NOTE FOR RECRUITERS</strong>: Slide is happy to enter into agreements with professional recruiters.  All professional recruiters should correspond with Slide via email, addressed to <script>makeEmailLink("recruiting");</script>. Please do not call.  Recruiters who call (particularly those who call and don't identify themselves as recruiters) are unlikely to have any success, and may be placed on our "unapproved list".  <em>Resumes received by Slide from recruiters who have not entered into a written contract with Slide are considered unsolicited and will be kept as Slide's intellectual property, or deleted as appropriate.</em>
+			</p>
+		</td>
+		<td valign="top">
+			<div style="margin:25px 0 0 0; padding: 0 0 10px 0;">
+				<h2>Life at Slide</h2>
+				<p>We're getting a new office! Read about Slide's expansion to a <a href="http://sanfrancisco.bizjournals.com/sanfrancisco/stories/2008/08/04/story11.html">spiffy new San Francisco address</a>.
+				</p>
+				<div id="slideshow_popup">
+					<p style="text-align: right; padding-bottom:10px;">
+						<a class="closeButton" href="#" onclick="closePopup();"> </a>
+					</p>
+					<div id="slideshow_container">	
+					</div>
+				</div>
+				<p style="margin-top:20px;">
+					<a href="#" onclick="showPopup(1); return false;"><img src="$serdes.make_static_url('/images/jobs_party.jpg')" height="84" width="125" alt="Company Party" /></a><br />
+					<a href="#" onclick="showPopup(1); return false;"><span class="small">3rd Anniversary Party, 2008</span></a>
+				</p>
+				<p style="margin-top:20px;">
+					<a href="#" onclick="showPopup(2); return false;"><img src="$serdes.make_static_url('/images/jobs_team.jpg')" height="84" width="125" alt="Slide Team" /></a><br />
+					<a href="#" onclick="showPopup(2); return false;"><span class="small">Office Life</span></a>
+				</p>	
+			</div>	
+		</td>
+	</tr>
+</table>
+
+
+
+<div class="breakline"> </div>
+
+#end def
+
