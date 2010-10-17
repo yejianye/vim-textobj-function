@@ -44,16 +44,19 @@ if !exists('*g:textobj_function_actionscript_select') || exists("g:textobj_funct
 	endfunction
 
 	function! s:test()
-		:e  ~/.vim/bundle/textobj_function/after/ftplugin/actionscript/testcase.as
+		TAssertOn
+		:e  ~/.vim/bundle/textobj_function/test/as_test.as
+		"test outer function 
 		:155
 		let arange = g:textobj_function_actionscript_select('a')
-		call Decho(arange)
+		TAssert arange[1][1] == 148 && arange[2][1] == 163
+
+		"test inner function
 		:155
 		let irange = g:textobj_function_actionscript_select('i')
-		call Decho(irange)
-		if arange[1][1] == 148 && arange[2][1] == 163 && irange[1][1] == 149 && irange[2][1] == 162
-			echo 'pass'
-		endif
+		TAssert irange[1][1] == 149 && irange[2][1] == 162 
+
+		echo "PASS"
 	endfunction
 
 	if (exists("g:textobj_function_actionscript_testing"))
