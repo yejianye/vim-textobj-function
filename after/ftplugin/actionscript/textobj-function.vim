@@ -5,24 +5,42 @@ if !exists('*g:textobj_function_actionscript_select') || exists("g:textobj_funct
 	endfunction
 
 	function! s:select_a()
+		let curline = getpos('.')
 		normal $
-		call search(s:function_pattern, 'b')
+		if (search(s:function_pattern, 'bW') == 0)
+			return 0
+		endif
 		let b = getpos('.')
-		call search('{')
+		if (search('{', 'W') == 0)
+			return 0
+		endif
 		normal %
 		let e = getpos('.')
-		return ['V', b, e]
+		if (curline[1] > e[1])
+			return 0
+		else
+			return ['V', b, e]
+		endif
 	endfunction
 
 	function! s:select_i()
+		let curline = getpos('.')
 		normal $
-		call search(s:function_pattern, 'b')
-		call search('{')
+		if (search(s:function_pattern, 'bW') == 0)
+			return 0
+		endif
+		if (search('{', 'W') == 0)
+			return 0
+		endif
 		normal j
 		let b = getpos('.')
 		normal k%k
 		let e = getpos('.')
-		return ['V', b, e]
+		if (curline[1] > e[1] + 1)
+			return 0
+		else
+			return ['V', b, e]
+		endif
 	endfunction
 
 	function! s:test()
