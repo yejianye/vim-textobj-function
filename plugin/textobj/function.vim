@@ -64,8 +64,26 @@ function! s:select_i()
   return s:select('i')
 endfunction
 
+function! s:move_to_begin()
+	let range = s:select_i()
+	if type(range) == 0
+		return
+	else
+		exec range[1][1]
+	endif
+endfunction
 
+function! s:move_to_end()
+	let range = s:select_i()
+	if type(range) == 0
+		return
+	else
+		exec range[2][1]
+	endif
+endfunction
 
+nmap [m :call <SID>move_to_begin()<CR>
+nmap ]m :call <SID>move_to_end()<CR>
 
 
 
